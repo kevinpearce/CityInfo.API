@@ -1,3 +1,4 @@
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Serilog;
 
@@ -9,14 +10,13 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 
-//no longer used, serilog replaces
+//--------no longer used, serilog replaces
 //builder.Logging.ClearProviders();
 //builder.Logging.AddConsole();
 
 builder.Host.UseSerilog();
 
 // Add services to the container.
-
 builder.Services.AddControllers(options =>
 {
     options.ReturnHttpNotAcceptable = true;
@@ -27,6 +27,9 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+
+//custom mocked email service
+builder.Services.AddTransient<LocalMailService>();
 
 var app = builder.Build();
 
