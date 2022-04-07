@@ -6,9 +6,9 @@ namespace CityInfo.API
     {
         public List<CityDto> Cities { get; set; }
 
-        public static CitiesDataStore Current { get; } = new CitiesDataStore();
+        //public static CitiesDataStore Current { get; } = new CitiesDataStore();
 
-        public CitiesDataStore() //not in the tutorial but if this is a Singleton, why was this Constructor not Private in the first place??
+        public CitiesDataStore()
         {
             Cities = new List<CityDto>()
             {
