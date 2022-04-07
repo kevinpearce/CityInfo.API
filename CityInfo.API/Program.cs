@@ -40,8 +40,10 @@ builder.Services.AddTransient<IMailService, CloudMailService>();
 
 //instance to be injected
 builder.Services.AddSingleton<CitiesDataStore>();
+
 builder.Services.AddDbContext<CityInfoContext>(
-    DbContextOptions => DbContextOptions.UseSqlite("Data Source=CityInfo.db"));
+    DbContextOptions => DbContextOptions.UseSqlite(
+        builder.Configuration["ConnectionStrings:CityInfoDBConnectionString"]));
 
 var app = builder.Build();
 
