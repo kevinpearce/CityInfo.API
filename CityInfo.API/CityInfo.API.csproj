@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="11.0.0" />
     <PackageReference Include="microsoft.aspnetcore.jsonpatch" Version="6.0.3" />
     <PackageReference Include="microsoft.aspnetcore.mvc.newtonsoftjson" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkcore" Version="6.0.3" />
