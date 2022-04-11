@@ -66,6 +66,15 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MustBeFromBristol", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("city", "Bristol");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
