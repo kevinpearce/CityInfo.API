@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityInfo.API.Controllers
 {
-    [Route("api/cities/{cityId}/pointsofinterest")]
+    [Route("api/v{version:apiVersion}/cities/{cityId}/pointsofinterest")]
     [ApiController]
-    [Authorize(Policy = "MustBeFromBristol")]
+    //[Authorize(Policy = "MustBeFromBristol")]
+    [ApiVersion("2.0")]
     public class PointsOfInterestController : ControllerBase
     {
         private readonly ILogger<PointsOfInterestController> _logger;
@@ -32,12 +33,12 @@ namespace CityInfo.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PointOfInterestDto>>> GetPointsOfInterest(int cityId)
         {
-            var cityName = User.Claims.FirstOrDefault(c => c.Type == "city")?.Value;
+            //var cityName = User.Claims.FirstOrDefault(c => c.Type == "city")?.Value;
 
-            if (!await _cityInfoRepository.CityNameMatchesCityId(cityName, cityId))
-            {
-                return Forbid();
-            }
+            //if (!await _cityInfoRepository.CityNameMatchesCityId(cityName, cityId))
+            //{
+            //    return Forbid();
+            //}
 
             if (!await _cityInfoRepository.CityExistsAsync(cityId))
             {
